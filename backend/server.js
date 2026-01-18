@@ -39,11 +39,11 @@ app.get("/", (req, res) => {
 
 // Importar rutas y pasar la conexión
 try {
-  const usuariosRoutes = require("./routes/usuarios")(connection);
-  const citasRoutes = require("./routes/citas")(connection);
+//  const usuariosRoutes = require("./routes/usuarios")(connection);
+//  const citasRoutes = require("./routes/citas")(connection);
 
-  app.use("/usuarios", usuariosRoutes);
-  app.use("/citas", citasRoutes);
+ // app.use("/usuarios", usuariosRoutes);
+ // app.use("/citas", citasRoutes);
 } catch (err) {
   console.error("Error cargando las rutas:", err.message);
 }
