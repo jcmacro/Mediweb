@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitud de Cita - Mediweb</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h2>Solicitar Cita Médica</h2>
+  <form id="citaForm">
+    <input type="number" name="usuario_id" placeholder="ID del usuario" required>
+    <input type="text" name="especialidad" placeholder="Especialidad" required>
+    <input type="date" name="fecha" required>
+    <input type="time" name="hora" required>
+    <textarea name="motivo" placeholder="Motivo de la cita"></textarea>
+    <button type="submit">Solicitar</button>
+  </form>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

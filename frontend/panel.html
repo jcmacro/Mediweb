@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Control - Mediweb</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h2>Panel de Control</h2>
+
+  <section id="infoUsuario">
+    <p>Bienvenido, <span id="nombreUsuario"></span></p>
+  </section>
+
+  <section id="citasUsuario">
+    <h3>Mis Citas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Especialidad</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCitas"></tbody>
+    </table>
+  </section>
+
+  <button onclick="window.location.href='cita.html'">Solicitar nueva cita</button>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
