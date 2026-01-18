@@ -1,10 +1,13 @@
+// Importación de módulos
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 
+// Inicialización de la app
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
@@ -17,6 +20,7 @@ const connection = mysql.createConnection({
   port: process.env.DB_PORT || 3306
 });
 
+// Verificación de conexión
 connection.connect((err) => {
   if (err) {
     console.error("Error conectando a la base de datos:", err);
