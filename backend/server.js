@@ -11,13 +11,13 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MySQL usando variables de entorno
+// Conexión a MySQL usando variables de entorno de Railway
 const connection = mysql.createConnection({
   host: process.env.MYSQLHOST,        // mysql.railway.internal
   user: process.env.MYSQLUSER,        // root
   password: process.env.MYSQLPASSWORD,// contraseña generada por Railway
-  database: process.env.MYSQLDATABASE,    // railway
-  port: process.env.DB_PORT || 3306
+  database: process.env.MYSQLDATABASE,// railway
+  port: process.env.MYSQLPORT || 3306 // usar MYSQLPORT
 });
 
 // Verificación de conexión sin bloquear el servidor
@@ -39,11 +39,11 @@ app.get("/", (req, res) => {
 
 // Importar rutas y pasar la conexión
 try {
-    const usuariosRoutes = require("./routes/usuarios")(connection);
-    const citasRoutes = require("./routes/citas")(connection);
+  const usuariosRoutes = require("./routes/usuarios")(connection);
+  const citasRoutes = require("./routes/citas")(connection);
 
-    app.use("/usuarios", usuariosRoutes);
-    app.use("/citas", citasRoutes);
+  app.use("/usuarios", usuariosRoutes);
+  app.use("/citas", citasRoutes);
 } catch (err) {
   console.error("Error cargando las rutas:", err.message);
 }
