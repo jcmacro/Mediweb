@@ -9,20 +9,24 @@ app.use(cors());
 app.use(express.json());
 
 // Conexión a MySQL
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",             // usuario MySQL
-  password: "kinyan123",    // contraseña MySQL
-  database: "mediweb"       // nombre del schema
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306
 });
 
-db.connect(err => {
+connection.connect((err) => {
   if (err) {
-    console.error("Error al conectar con MySQL:", err);
+    console.error('Error conectando a la base de datos:', err);
     return;
   }
-  console.log("Conectado a MySQL");
+  console.log('Conexión exitosa a la base de datos');
 });
+
 
 // Importar rutas
 const usuariosRoutes = require("./routes/usuarios")(db);
