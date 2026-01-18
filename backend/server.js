@@ -3,14 +3,12 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MySQL
-const mysql = require('mysql2');
-
+// Conexión a MySQL usando variables de entorno
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -21,16 +19,15 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.error('Error conectando a la base de datos:', err);
+    console.error("Error conectando a la base de datos:", err);
     return;
   }
-  console.log('Conexión exitosa a la base de datos');
+  console.log("Conexión exitosa a la base de datos");
 });
 
-
-// Importar rutas
-const usuariosRoutes = require("./routes/usuarios")(db);
-const citasRoutes = require("./routes/citas")(db);
+// Importar rutas y pasar la conexión
+const usuariosRoutes = require("./routes/usuarios")(connection);
+const citasRoutes = require("./routes/citas")(connection);
 
 app.use("/usuarios", usuariosRoutes);
 app.use("/citas", citasRoutes);
