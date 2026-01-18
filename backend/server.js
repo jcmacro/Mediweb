@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MySQL usando variables de entorno de Railway
+// Conexión a MySQL usando SOLO variables MYSQL* de Railway
 const connection = mysql.createConnection({
   host: process.env.MYSQLHOST,        // mysql.railway.internal
   user: process.env.MYSQLUSER,        // root
