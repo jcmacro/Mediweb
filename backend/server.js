@@ -13,20 +13,23 @@ app.use(express.json());
 
 // Conexión a MySQL usando variables de entorno
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,        // mysql.railway.internal
+  user: process.env.DB_USER,        // root
+  password: process.env.DB_PASSWORD,// contraseña generada por Railway
+  database: process.env.DB_NAME,    // railway
   port: process.env.DB_PORT || 3306
 });
 
-// Verificación de conexión
+// Verificación de conexión sin bloquear el servidor
 connection.connect((err) => {
   if (err) {
-    console.error("Error conectando a la base de datos:", err);
-    return;
+    console.error("Error conectando a la base de datos:");
+    console.error("Código:", err.code);
+    console.error("Mensaje:", err.message);
+    console.error("Stack:", err.stack);
+  } else {
+    console.log("Conexión exitosa a la base de datos");
   }
-  console.log("Conexión exitosa a la base de datos");
 });
 
 // Ruta raíz para verificar que el backend está vivo
@@ -35,11 +38,15 @@ app.get("/", (req, res) => {
 });
 
 // Importar rutas y pasar la conexión
-const usuariosRoutes = require("./routes/usuarios")(connection);
-const citasRoutes = require("./routes/citas")(connection);
+try {
+  const usuariosRoutes = require("./routes/usuarios")(connection);
+  const citasRoutes = require("./routes/citas")(connection);
 
-app.use("/usuarios", usuariosRoutes);
-app.use("/citas", citasRoutes);
+  app.use("/usuarios", usuariosRoutes);
+  app.use("/citas", citasRoutes);
+} catch (err) {
+  console.error("Error cargando las rutas:", err.message);
+}
 
 // Escuchar en el puerto asignado por Railway
 app.listen(port, () => {
