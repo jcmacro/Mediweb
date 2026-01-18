@@ -12,16 +12,13 @@ app.use(cors());
 app.use(express.json());
 
 // Conexión a MySQL usando SOLO variables MYSQL* de Railway
-app.get("/env-check", (req, res) => {
-  res.json({
-    MYSQLHOST: process.env.MYSQLHOST,
-    MYSQLUSER: process.env.MYSQLUSER,
-    MYSQLPASSWORD: process.env.MYSQLPASSWORD ? "****" : null,
-    MYSQLDATABASE: process.env.MYSQLDATABASE,
-    MYSQLPORT: process.env.MYSQLPORT
-  });
+const connection = mysql.createConnection({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT || 3306
 });
-
 
 // Verificación de conexión sin bloquear el servidor
 connection.connect((err) => {
@@ -33,6 +30,17 @@ connection.connect((err) => {
   } else {
     console.log("Conexión exitosa a la base de datos");
   }
+});
+
+// Ruta para verificar que las variables están llegando
+app.get("/env-check", (req, res) => {
+  res.json({
+    MYSQLHOST: process.env.MYSQLHOST,
+    MYSQLUSER: process.env.MYSQLUSER,
+    MYSQLPASSWORD: process.env.MYSQLPASSWORD ? "****" : null,
+    MYSQLDATABASE: process.env.MYSQLDATABASE,
+    MYSQLPORT: process.env.MYSQLPORT
+  });
 });
 
 // Ruta raíz para verificar que el backend está vivo
