@@ -25,6 +25,11 @@ connection.connect((err) => {
   console.log("Conexión exitosa a la base de datos");
 });
 
+// Ruta raíz para verificar que el backend está vivo
+app.get("/", (req, res) => {
+  res.send("Mediweb backend está corriendo en Railway");
+});
+
 // Importar rutas y pasar la conexión
 const usuariosRoutes = require("./routes/usuarios")(connection);
 const citasRoutes = require("./routes/citas")(connection);
@@ -32,6 +37,7 @@ const citasRoutes = require("./routes/citas")(connection);
 app.use("/usuarios", usuariosRoutes);
 app.use("/citas", citasRoutes);
 
+// Escuchar en el puerto asignado por Railway
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor corriendo en el puerto ${port}`);
 });
