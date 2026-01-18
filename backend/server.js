@@ -13,10 +13,10 @@ app.use(express.json());
 
 // Conexión a MySQL usando variables de entorno
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,        // mysql.railway.internal
-  user: process.env.DB_USER,        // root
-  password: process.env.DB_PASSWORD,// contraseña generada por Railway
-  database: process.env.DB_NAME,    // railway
+  host: process.env.MYSQLHOST,        // mysql.railway.internal
+  user: process.env.MYSQLUSER,        // root
+  password: process.env.MYSQLPASSWORD,// contraseña generada por Railway
+  database: process.env.MYSQLDATABASE,    // railway
   port: process.env.DB_PORT || 3306
 });
 
@@ -39,11 +39,11 @@ app.get("/", (req, res) => {
 
 // Importar rutas y pasar la conexión
 try {
-//  const usuariosRoutes = require("./routes/usuarios")(connection);
-//  const citasRoutes = require("./routes/citas")(connection);
+    const usuariosRoutes = require("./routes/usuarios")(connection);
+    const citasRoutes = require("./routes/citas")(connection);
 
- // app.use("/usuarios", usuariosRoutes);
- // app.use("/citas", citasRoutes);
+    app.use("/usuarios", usuariosRoutes);
+    app.use("/citas", citasRoutes);
 } catch (err) {
   console.error("Error cargando las rutas:", err.message);
 }
