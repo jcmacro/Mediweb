@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
   user: process.env.MYSQLUSER,        // root
   password: process.env.MYSQLPASSWORD,// contraseña generada por Railway
   database: process.env.MYSQLDATABASE,// railway
-  port: process.env.MYSQLPORT || 3306 // usar MYSQLPORT
+  port: process.env.MYSQLPORT || 3306 // usar MYSQLPORT, no DB_PORT
 });
 
 // Verificación de conexión sin bloquear el servidor
