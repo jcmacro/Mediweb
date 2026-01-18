@@ -12,13 +12,16 @@ app.use(cors());
 app.use(express.json());
 
 // Conexión a MySQL usando SOLO variables MYSQL* de Railway
-const connection = mysql.createConnection({
-  host: process.env.MYSQLHOST,        // mysql.railway.internal
-  user: process.env.MYSQLUSER,        // root
-  password: process.env.MYSQLPASSWORD,// contraseña generada por Railway
-  database: process.env.MYSQLDATABASE,// railway
-  port: process.env.MYSQLPORT || 3306 // usar MYSQLPORT, no DB_PORT
+app.get("/env-check", (req, res) => {
+  res.json({
+    MYSQLHOST: process.env.MYSQLHOST,
+    MYSQLUSER: process.env.MYSQLUSER,
+    MYSQLPASSWORD: process.env.MYSQLPASSWORD ? "****" : null,
+    MYSQLDATABASE: process.env.MYSQLDATABASE,
+    MYSQLPORT: process.env.MYSQLPORT
+  });
 });
+
 
 // Verificación de conexión sin bloquear el servidor
 connection.connect((err) => {
