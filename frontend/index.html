@@ -3,23 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>Ingreso a Mediweb</title>
+  <!-- Archivo de estilos -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Contenedor principal del login -->
   <div class="login-container">
     <h2>Ingreso a Mediweb</h2>
-    <form>
+
+    <!-- Formulario de inicio de sesión -->
+    <form id="loginForm">
+      <!-- Campo de usuario -->
       <label for="usuario">Usuario</label>
-      <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
+      <input 
+        type="text" 
+        id="usuario" 
+        name="usuario" 
+        placeholder="Ingrese su usuario" 
+        required
+      >
 
+      <!-- Campo de contraseña -->
       <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        placeholder="Ingrese su contraseña" 
+        required
+      >
 
+      <!-- Botón de envío -->
       <button type="submit">Ingresar</button>
     </form>
-    <p class="register-link">¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
+
+    <!-- Enlace hacia la página de registro -->
+    <p class="register-link">
+      ¿No tienes cuenta? 
+      <a href="registro.html">Regístrate aquí</a>
+    </p>
   </div>
 
+  <!-- Archivo de lógica en JavaScript -->
   <script src="scripts.js"></script>
 </body>
 </html>
