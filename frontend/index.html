@@ -13,7 +13,6 @@
 
     <!-- Formulario de inicio de sesión -->
     <form id="loginForm">
-      <!-- Campo de usuario -->
       <label for="usuario">Usuario</label>
       <input 
         type="text" 
@@ -23,7 +22,6 @@
         required
       >
 
-      <!-- Campo de contraseña -->
       <label for="password">Contraseña</label>
       <input 
         type="password" 
@@ -33,15 +31,51 @@
         required
       >
 
-      <!-- Botón de envío -->
       <button type="submit">Ingresar</button>
     </form>
 
     <!-- Enlace hacia la página de registro -->
     <p class="register-link">
       ¿No tienes cuenta? 
-      <a href="registro.html">Regístrate aquí</a>
+      <a href="#registro">Regístrate aquí</a>
     </p>
+  </div>
+
+  <!-- Contenedor del registro -->
+  <div class="registro-container" id="registro">
+    <h2>Registro de Usuario</h2>
+
+    <!-- Formulario de registro -->
+    <form id="registroForm">
+      <label for="nombre">Nombre</label>
+      <input 
+        type="text" 
+        id="nombre" 
+        name="nombre" 
+        placeholder="Ingrese su nombre" 
+        required
+      >
+
+      <label for="email">Correo electrónico</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="Ingrese su correo" 
+        required
+      >
+
+      <label for="passwordRegistro">Contraseña</label>
+      <input 
+        type="password" 
+        id="passwordRegistro" 
+        name="password" 
+        placeholder="Cree una contraseña" 
+        required
+      >
+
+      <button type="submit">Registrarse</button>
+    </form>
   </div>
 
   <!-- Archivo de lógica en JavaScript -->
