@@ -5,7 +5,7 @@ const cors = require("cors");
 
 // Inicialización de la app
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT; // usar SIEMPRE el puerto de Railway
 
 // Middlewares
 app.use(cors());
@@ -26,7 +26,6 @@ connection.connect((err) => {
     console.error("Error conectando a la base de datos:");
     console.error("Código:", err.code);
     console.error("Mensaje:", err.message);
-    console.error("Stack:", err.stack);
   } else {
     console.log("Conexión exitosa a la base de datos");
   }
@@ -45,7 +44,7 @@ app.get("/env-check", (req, res) => {
 
 // Ruta raíz para verificar que el backend está vivo
 app.get("/", (req, res) => {
-  res.send("Mediweb backend está corriendo en Railway");
+  res.send("✅ Mediweb backend está corriendo en Railway");
 });
 
 // Importar rutas y pasar la conexión
@@ -60,6 +59,6 @@ try {
 }
 
 // Escuchar en el puerto asignado por Railway
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
