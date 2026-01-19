@@ -49,8 +49,8 @@ app.get("/", (req, res) => {
 
 // Importar rutas y pasar la conexión
 try {
-  const usuariosRoutes = require("./backend/routes/usuarios")(connection);
-  const citasRoutes = require("./backend/routes/citas")(connection);
+  const usuariosRoutes = require("./routes/usuarios")(connection);
+  const citasRoutes = require("./routes/citas")(connection);
 
   app.use("/usuarios", usuariosRoutes);
   app.use("/citas", citasRoutes);
