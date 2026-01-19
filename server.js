@@ -44,7 +44,7 @@ app.get("/env-check", (req, res) => {
 
 // Ruta raíz para verificar que el backend está vivo
 app.get("/", (req, res) => {
-  res.send("✅ Mediweb backend está corriendo en Railway");
+  res.send("Mediweb backend está corriendo en Railway");
 });
 
 // Importar rutas y pasar la conexión
